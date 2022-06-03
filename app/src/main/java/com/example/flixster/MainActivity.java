@@ -24,10 +24,11 @@ import okhttp3.Headers;
 public class MainActivity extends AppCompatActivity {
 
     public static final String API_KEY = "1164320e19fc1f0ad3ba8319e32019b2";
-    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=1164320e19fc1f0ad3ba8319e32019b2";
+    public static final String NOW_PLAYING_URL
+            = String.format("https://api.themoviedb.org/3/movie/now_playing?api_key=%s", API_KEY);
+//   public static final String CONFIG_URL
+//    = String.format("https://api.themoviedb.org/3/movie/configuration?api_key=%s", API_KEY);
     public static final String TAG = "MainActivity";
-
-    public static final String CONFIG_URL = "https://api.themoviedb.org/3/movie/configuration?api_key=1164320e19fc1f0ad3ba8319e32019b2";
 
     List<Movie> movies;
     RecyclerView rv;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
+                // i should try to make a call to the config also...?
                 Log.d(TAG, "onSuccess");
                 JSONObject jsonObject = json.jsonObject;
                 try {
@@ -65,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(TAG, "hit json exception", e);
                     e.printStackTrace();
                 }
-//
             }
 
             @Override
@@ -73,5 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure");
             }
         });
+
     }
 }

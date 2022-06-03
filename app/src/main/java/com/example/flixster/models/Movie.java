@@ -10,11 +10,15 @@ import java.util.List;
 
 @Parcel
 public class Movie {
+
     String posterPath;
     String backdropPath;
     String title;
     String overview;
     Double voteAverage;
+    Integer id;
+
+    public static final String IMG_URL = "https://image.tmdb.org/t/p/w342/";
 
     public Movie(){}
 
@@ -24,6 +28,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         voteAverage = jsonObject.getDouble("vote_average");
+        id = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movie_json_array) throws JSONException{
@@ -34,16 +39,20 @@ public class Movie {
         return movies;
     }
 
+//    public void updateImgPaths(Context context, JSONArray posterSizes, JSONArray backdropSizes){
+////        Integer screenWidthPx = Resources.getSystem().getDisplayMetrics().widthPixels;
+////        Integer screenHeightPx = Resources.getSystem().getDisplayMetrics().heightPixels;
+//        Integer densityDpi = Resources.getSystem().getDisplayMetrics().densityDpi;
+//        Log.d("Movie", Integer.toString(densityDpi));
+//    }
+
     public String getPosterPath() {
         // currently hard coded image size
-        // should call the client here again, later
-//        return "agjkn";
-        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+        return String.format(IMG_URL + "%s", posterPath);
     }
 
     public String getBackdropPath(){
-//        return "sus";
-        return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
+        return String.format(IMG_URL + "%s", backdropPath);
     }
 
     public String getTitle() {
@@ -55,4 +64,6 @@ public class Movie {
     }
 
     public Double getVoteAverage() { return voteAverage; }
+
+    public Integer getId() { return id; }
 }

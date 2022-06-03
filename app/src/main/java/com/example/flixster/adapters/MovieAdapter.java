@@ -84,9 +84,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             // rounding corners
             Glide.with(context)
                     .load(imgUrl)
-                    .placeholder(imgPlaceholder)
+
                     .fitCenter()
                     .transform(new RoundedCorners(30))
+                    .placeholder(imgPlaceholder)
                     .into(ivPoster);
         }
 

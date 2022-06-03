@@ -12,9 +12,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.codepath.asynchttpclient.AsyncHttpClient;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixster.models.Movie;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcels;
+
+import okhttp3.Headers;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
@@ -24,6 +31,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
     RatingBar rbVoteAverage;
     ImageView ivPoster;
     Context context;
+//
+//    public static final String API_KEY = "1164320e19fc1f0ad3ba8319e32019b2";
+//    public static final String CONFIG_URL
+//        = String.format("https://api.themoviedb.org/3/configuration?api_key=%s", API_KEY);
+//    public static final String IMG_URL = "https://image.tmdb.org/t/p/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +44,38 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         // unwrap the movie
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
-        Log.d("MovieDetailsActivity", String.format("Showing details for %s", movie.getTitle()));
+//        Log.d("MovieDetailsActivity", String.format("Showing details for %s", movie.getTitle()));
+
+        // movie.id
+
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        client.get(CONFIG_URL, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Headers headers, JSON json) {
+//                Log.d("MovieDetailsActivity", "onSuccess");
+//                try {
+//                    JSONObject images = json.jsonObject.getJSONObject("images");
+//                    JSONArray posterSizes = images.getJSONArray("poster_sizes");
+//                    JSONArray backdropSizes = images.getJSONArray("backdrop_sizes");
+//
+//                    movie.updateImgPaths(context, posterSizes, backdropSizes);
+////                    MovieDetailsActivity.this.notify();
+//                    // determine the appropriate size based on the screen
+////                    Log.d("MovieDetailsActivity", Integer.toString(posterSizes.length()));
+////                    Log.d("MovieDetailsActivity", String.valueOf(posterSizes));
+////                    Log.d("MovieDetailsActivity", posterSizes.getString(0));
+//
+//                } catch (JSONException e) {
+//                    Log.d("MovieDetailsActivity", String.valueOf(e));
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+//                Log.d("MovieDetailsActivity", "onFailure");
+//            }
+//        });
 
         tvTitle = (TextView) findViewById(R.id.tvTitleDetails);
         tvOverview = (TextView) findViewById(R.id.tvOverviewDetails);
@@ -57,5 +100,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .placeholder(imgPlaceholder)
                 .fitCenter()
                 .into(ivPoster);
+
     }
 }
