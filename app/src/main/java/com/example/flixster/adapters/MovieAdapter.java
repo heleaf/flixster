@@ -60,7 +60,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnHoverListener {
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
@@ -82,13 +82,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     R.drawable.flicks_backdrop_placeholder : R.drawable.flicks_movie_placeholder;
 
             // rounding corners
-            int radius = 30;
-
             Glide.with(context)
                     .load(imgUrl)
                     .placeholder(imgPlaceholder)
                     .fitCenter()
-                    .transform(new RoundedCorners(radius))
+                    .transform(new RoundedCorners(30))
                     .into(ivPoster);
         }
 
@@ -108,5 +106,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             }
         }
 
+        @Override
+        public boolean onHover(View v, MotionEvent event) {
+            v.setAlpha(0.2f);
+            v.notify();
+            return true;
+        }
     }
 }

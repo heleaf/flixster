@@ -7,7 +7,7 @@
         <entry key="app/src/main/res/drawable/2x3 placeholder_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.129" />
         <entry key="app/src/main/res/drawable/placeholder.xml" value="0.1" />
-        <entry key="app/src/main/res/layout-land/activity_movie_details.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/activity_movie_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout-land/item_movie.xml" value="0.23664398193359376" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19261779785156247" />
         <entry key="app/src/main/res/layout/activity_movie_details.xml" value="0.328125" />
