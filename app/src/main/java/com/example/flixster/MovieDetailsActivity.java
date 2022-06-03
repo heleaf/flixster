@@ -2,6 +2,7 @@ package com.example.flixster;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     TextView tvOverview;
     RatingBar rbVoteAverage;
     ImageView ivPoster;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,24 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTitle = (TextView) findViewById(R.id.tvTitleDetails);
         tvOverview = (TextView) findViewById(R.id.tvOverviewDetails);
         rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
+        ivPoster = (ImageView) findViewById(R.id.ivPosterDetails);
 
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
 
         float voteAvg = movie.getVoteAverage().floatValue();
         rbVoteAverage.setRating(voteAvg / 2.0f);
+        context = this;
+
+        String imgUrl = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ?
+                movie.getPoster_path() : movie.getBackdrop_path();
+
+        int imgPlaceholder = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ?
+                R.drawable.flicks_movie_placeholder : R.drawable.flicks_backdrop_placeholder;
+
+        Glide.with(context)
+                .load(imgUrl)
+                .placeholder(imgPlaceholder)
+                .into(ivPoster);
     }
 }

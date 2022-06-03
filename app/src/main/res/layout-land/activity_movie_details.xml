@@ -8,15 +8,15 @@
 
     <TextView
         android:id="@+id/tvTitleDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="450dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:paddingEnd="5dp"
         android:paddingRight="5dp"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPosterDetails"
+        app:layout_constraintStart_toEndOf="@+id/ivPosterDetails"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
     <RatingBar
@@ -27,24 +27,24 @@
         android:layout_marginTop="5dp"
         android:numStars="5"
         android:stepSize="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPosterDetails"
         app:layout_constraintTop_toBottomOf="@+id/tvTitleDetails" />
 
     <TextView
         android:id="@+id/tvOverviewDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="450dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:paddingEnd="5dp"
         android:paddingRight="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPosterDetails"
         app:layout_constraintTop_toBottomOf="@+id/rbVoteAverage"
         tools:text="Movie Overview" />
 
     <ImageView
         android:id="@+id/ivPosterDetails"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
