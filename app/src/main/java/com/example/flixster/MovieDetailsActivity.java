@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixster.models.Movie;
 
 import org.parceler.Parcels;
@@ -46,7 +47,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         context = this;
 
         String imgUrl = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ?
-                movie.getPoster_path() : movie.getBackdrop_path();
+                movie.getPosterPath() : movie.getBackdropPath();
 
         int imgPlaceholder = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ?
                 R.drawable.flicks_movie_placeholder : R.drawable.flicks_backdrop_placeholder;
@@ -54,6 +55,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Glide.with(context)
                 .load(imgUrl)
                 .placeholder(imgPlaceholder)
+                .fitCenter()
                 .into(ivPoster);
     }
 }

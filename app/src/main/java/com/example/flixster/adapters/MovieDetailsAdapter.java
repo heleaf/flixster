@@ -7,6 +7,4 @@ import com.example.flixster.models.Movie;
 public class MovieDetailsAdapter {
     Context context;
     Movie movie;
-
-
 }

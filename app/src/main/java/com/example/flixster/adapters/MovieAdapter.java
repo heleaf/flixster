@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixster.MovieDetailsActivity;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
@@ -74,14 +76,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             String imgUrl = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ?
-                    movie.getBackdrop_path() : movie.getPoster_path();
+                    movie.getBackdropPath() : movie.getPosterPath();
 
             int imgPlaceholder = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ?
                     R.drawable.flicks_backdrop_placeholder : R.drawable.flicks_movie_placeholder;
 
+            // rounding corners
+            int radius = 30;
+
             Glide.with(context)
                     .load(imgUrl)
                     .placeholder(imgPlaceholder)
+                    .fitCenter()
+                    .transform(new RoundedCorners(radius))
                     .into(ivPoster);
         }
 
@@ -90,17 +97,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void onClick(View v) {
             int pos = getAdapterPosition();
             if (pos != RecyclerView.NO_POSITION){
-                Movie movie_at_pos = movies.get(pos);
+                Movie movie = movies.get(pos);
                 // intent for the new activity
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
 
-                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie_at_pos));
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
                 context.startActivity(intent);
 
-                Log.d("MovieAdapter", pos + " " + movie_at_pos.getTitle() + intent.toString());
-
+                Log.d("MovieAdapter", pos + " " + movie.getTitle() + intent.toString());
             }
-
         }
+
     }
 }

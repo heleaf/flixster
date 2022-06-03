@@ -10,8 +10,8 @@ import java.util.List;
 
 @Parcel
 public class Movie {
-    String poster_path;
-    String backdrop_path;
+    String posterPath;
+    String backdropPath;
     String title;
     String overview;
     Double voteAverage;
@@ -19,8 +19,8 @@ public class Movie {
     public Movie(){}
 
     public Movie(JSONObject jsonObject) throws JSONException {
-        poster_path = jsonObject.getString("poster_path");
-        backdrop_path = jsonObject.getString("backdrop_path");
+        posterPath = jsonObject.getString("poster_path");
+        backdropPath = jsonObject.getString("backdrop_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         voteAverage = jsonObject.getDouble("vote_average");
@@ -34,14 +34,16 @@ public class Movie {
         return movies;
     }
 
-    public String getPoster_path() {
+    public String getPosterPath() {
         // currently hard coded image size
         // should call the client here again, later
-        return String.format("https://image.tmdb.org/t/p/w342/%s", poster_path);
+//        return "agjkn";
+        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
     }
 
-    public String getBackdrop_path(){
-        return String.format("https://image.tmdb.org/t/p/w342/%s", backdrop_path);
+    public String getBackdropPath(){
+//        return "sus";
+        return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
 
     public String getTitle() {
