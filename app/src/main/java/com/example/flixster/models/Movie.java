@@ -39,13 +39,6 @@ public class Movie {
         return movies;
     }
 
-//    public void updateImgPaths(Context context, JSONArray posterSizes, JSONArray backdropSizes){
-////        Integer screenWidthPx = Resources.getSystem().getDisplayMetrics().widthPixels;
-////        Integer screenHeightPx = Resources.getSystem().getDisplayMetrics().heightPixels;
-//        Integer densityDpi = Resources.getSystem().getDisplayMetrics().densityDpi;
-//        Log.d("Movie", Integer.toString(densityDpi));
-//    }
-
     public String getPosterPath() {
         // currently hard coded image size
         return String.format(IMG_URL + "%s", posterPath);

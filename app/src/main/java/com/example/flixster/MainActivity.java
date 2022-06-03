@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String API_KEY = "1164320e19fc1f0ad3ba8319e32019b2";
     public static final String NOW_PLAYING_URL
             = String.format("https://api.themoviedb.org/3/movie/now_playing?api_key=%s", API_KEY);
-//   public static final String CONFIG_URL
-//    = String.format("https://api.themoviedb.org/3/movie/configuration?api_key=%s", API_KEY);
     public static final String TAG = "MainActivity";
 
     List<Movie> movies;
@@ -70,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+            public void onFailure(int statusCode, Headers headers, String response,
+                                  Throwable throwable) {
                 Log.d(TAG, "onFailure");
             }
         });
