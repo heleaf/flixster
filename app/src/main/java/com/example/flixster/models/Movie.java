@@ -20,6 +20,7 @@ public class Movie {
 
     public static final String IMG_URL = "https://image.tmdb.org/t/p/w342/";
 
+
     public Movie(){}
 
     public Movie(JSONObject jsonObject) throws JSONException {

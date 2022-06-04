@@ -60,7 +60,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnHoverListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
@@ -107,11 +107,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             }
         }
 
-        @Override
-        public boolean onHover(View v, MotionEvent event) {
-            v.setAlpha(0.2f);
-            v.notify();
-            return true;
-        }
+//        @Override
+//        public boolean onHover(View v, MotionEvent event) {
+//            v.setAlpha(0.2f);
+//            v.notify();
+//            return true;
+//        }
     }
 }
