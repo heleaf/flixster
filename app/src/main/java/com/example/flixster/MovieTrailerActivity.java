@@ -32,7 +32,9 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
 
         movieId = (Integer) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
 
-        final String VIDEO_URL = String.format("https://api.themoviedb.org/3/movie/%s/videos?api_key=%s", movieId, YT_API_KEY);
+        final String VIDEO_URL
+                = String.format("https://api.themoviedb.org/3/movie/%s/videos?api_key=%s",
+                movieId, YT_API_KEY);
         Log.d("MovieTrailerActivity", Integer.toString(movieId));
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -43,9 +45,27 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
                 try {
                     JSONArray results = json.jsonObject.getJSONArray("results");
                     if (results.length() != 0){
-                        Object firstObj = results.get(0);
-//                        firstObj.key;
-                        //
+                        JSONObject firstObj = (JSONObject) results.get(0);
+                        final String videoId = firstObj.getString("key");
+                        // resolve the player view from the layout
+                        YouTubePlayerView playerView = (YouTubePlayerView) findViewById(R.id.player);
+
+                        // initialize with API key stored in secrets.xml
+                        playerView.initialize(YT_API_KEY, new YouTubePlayer.OnInitializedListener() {
+                            @Override
+                            public void onInitializationSuccess(YouTubePlayer.Provider provider,
+                                                                YouTubePlayer youTubePlayer, boolean b) {
+                                // do any work here to cue video, play video, etc.
+                                youTubePlayer.cueVideo(videoId);
+                            }
+
+                            @Override
+                            public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                                                YouTubeInitializationResult youTubeInitializationResult) {
+                                // log the error
+                                Log.e("MovieTrailerActivity", "Error initializing YouTube player");
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -58,28 +78,8 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
             }
         });
 
-        // TODO move these lines into the try catch after I parse out the videoID
         // temporary test video id -- TODO replace with movie trailer video id
-        final String videoId = "tKodtNFpzBA";
+        // final String videoId = "tKodtNFpzBA";
 
-        // resolve the player view from the layout
-        YouTubePlayerView playerView = (YouTubePlayerView) findViewById(R.id.player);
-
-        // initialize with API key stored in secrets.xml
-        playerView.initialize(YT_API_KEY, new YouTubePlayer.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider,
-                                                YouTubePlayer youTubePlayer, boolean b) {
-                // do any work here to cue video, play video, etc.
-                youTubePlayer.cueVideo(videoId);
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider,
-                                                YouTubeInitializationResult youTubeInitializationResult) {
-                // log the error
-                Log.e("MovieTrailerActivity", "Error initializing YouTube player");
-            }
-        });
     }
 }
