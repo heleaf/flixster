@@ -38,7 +38,7 @@ GIF created with [Kap](https://getkap.co/).
 
 Describe any challenges encountered while building the app.
 
-- For the YoutubePlayerView feature, the API request I'm making always fails due to an invalid API key (https://api.themoviedb.org/3/movie/526896/videos...). I'm still trying to figure out why this is an issue, because I enabled Youtube Data API V3 permissions on the google cloud platform where i generated the API key (see attached images)
+- For the YoutubePlayerView feature, the API request I'm making always fails due to an invalid API key (https://api.themoviedb.org/3/movie/526896/videos...). I'm still trying to figure out why this is an issue, because I enabled Youtube Data API V3 permissions on the google cloud platform where i generated the API key
 
 ## Open-source libraries used
 
